@@ -1,0 +1,27 @@
+body {
+  min-height: 100vh;
+}
+
+h2 {
+  font-size: 18px;
+  max-width: 450px;
+}
+
+h2 mark {
+  font-weight: 600;
+  color: #20247b;
+}
+
+mark {
+  background-image: linear-gradient(rgba(	156, 39, 176, 0.6), rgba(	156, 39, 176, 0.6));
+  background-size: 100% 3px;
+  background-repeat: no-repeat;
+  background-position: 0 bottom;
+  background-color: transparent;
+  padding: 0;
+  color: currentColor;
+}
+
+.container {
+  margin-top: 30px;
+}

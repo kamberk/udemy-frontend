@@ -1,0 +1,61 @@
+<body>
+<div class="container">
+    <div class="row" style="margin-top: 10px;">
+      <div class="col-sm-8">
+        <h2>Author: <mark>{{course?.AuthorRef}}</mark></h2>
+        <ngb-rating [(rate)]="rating" style="margin-left: 20%; margin-top: 15px;"   >
+            <ng-template let-fill="fill" let-index="index">
+           <span class="star" [class.filled]="fill === 100"  [class.bad]="index < 3">&#9733;</span>
+       </ng-template>
+       </ngb-rating>
+   <hr>
+   <pre style="margin-left: 10%;">Course rating is: <b>{{rating}} stars: </b></pre>
+   <button 
+    *ngIf="this.role != 'teacher' && this.postoji == 0 && this.authen == true"
+    mat-raised-button color="primary" style="width: 100%" 
+     (click)="openSnackBar('Course Added', 'Close!', course)">
+       Add to Cart
+   <mat-icon>add_shopping_cart</mat-icon>
+ </button>
+
+ <button 
+ *ngIf="this.authen != true"
+ mat-raised-button color="primary" style="width: 100%" 
+  (click)="login()">
+    Please login to buy this course
+<mat-icon style="margin-left: 5px;">login</mat-icon>
+</button>
+
+
+ <button 
+    *ngIf="this.postoji != 0"
+    mat-raised-button color="primary" style="width: 100%" 
+     (click)="startCourse(course.ID)">
+       Go to course
+   <mat-icon>fiber_smart_record</mat-icon>
+ </button>
+
+      </div>
+      <div class="col-sm-4">
+       
+        <h1> {{course?.Title}} </h1>
+        <h3> {{course?.Description}} </h3>
+        <img src="{{course?.Image}}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+          <!-- add some elements -->
+          
+          
+      </div>
+
+      <div class="col-sm">
+       
+      </div>
+      <div class="col-sm">
+          <!-- add some elements -->
+      </div>
+    </div>
+</div>
+</body>

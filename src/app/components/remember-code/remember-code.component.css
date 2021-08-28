@@ -1,0 +1,42 @@
+body {
+    min-height: 100vh;
+}
+
+.remember{
+    text-align: center;
+    color: red;
+    text-size-adjust: inherit;
+    margin-top: 10px;
+}
+
+#code {
+    text-align: center;
+    
+}
+
+hr {
+    width: 50%;
+    margin: auto;
+    color: red;
+}
+
+#getIt {
+    text-align: center;
+    color: rgb(37, 174, 192);
+}
+
+.login {
+    text-align: center;
+    color: #673AB7;
+}
+
+.redirect {
+    margin: auto;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+a {
+    text-decoration: none;
+    color: white;
+}

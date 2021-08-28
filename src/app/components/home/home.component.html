@@ -1,0 +1,163 @@
+<div class="container">
+<img class="baner" src="../../../assets/images/baner.jpg" />
+<button *ngIf="this.role != 'teacher' && this.loggedIn != false " routerLink="/become-a-teacher" mat-raised-button class="btn" color="primary">
+  <mat-icon>school</mat-icon>
+  Become a teacher
+</button>
+<button *ngIf=" this.loggedIn == false " routerLink="/login" mat-raised-button class="btn" color="primary">
+  <mat-icon style="margin-right: 5px;">login</mat-icon>
+  Please login to buy courses
+</button>
+</div>
+
+<div class="opis">
+    <button mat-stroked-button class="dodatak" style="color: black; width: 100%; margin-top: 10px; padding: 10px; border-bottom: none; border-right: none; border-left: none;" disabled>
+    
+    <b><h1 style="text-align: center; align-items: center; margin: auto;">
+      The world's largest selection of courses
+      <mat-icon>lightbulb</mat-icon>
+    </h1></b>
+
+    </button>
+  <button mat-stroked-button class="dodatak" style="color: black; width: 100%; padding: 5px; border-top: none; border-right: none; border-left: none;" disabled>
+   
+    <b><h1 class="dodatak" style="text-align: center; align-items: center; margin: auto;">
+      Choose from 155,000 online video courses with new additions published every month
+      <mat-icon style="margin-left: 10px;">cast_for_education</mat-icon></h1></b>
+
+  </button>
+</div>
+
+<mat-tab-group animationDuration="1300ms" mat-align-tabs="center">
+  <mat-tab label="All courses">
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">pageview</mat-icon>
+      All courses
+    </ng-template>
+    <div class="row">
+      <div class="col-sm-6" *ngFor="let course of courses | paginate: {
+        itemsPerPage: 4,
+        currentPage: this.page,
+        totalItems: this.totalLength
+        }
+         let i = index
+         "
+         >
+        <div class="card">
+          <div class="card-body">
+            <h1 class="card-title">{{course.Title}}</h1>
+            <img class="card-img-top" src={{course.Image}} alt="ad-for-course">
+            <p class="card-text">{{course.Description}}</p>
+            <h3 class="card-text"><b>Price: </b> ${{course.Price}}</h3>
+            <p class="card-text"><small class="text-muted">Created At: {{course.CreatedAt.substring(0,10)}}</small></p>
+            <a (click)="seeMore(course.ID)"  mat-raised-button color="primary" ping="{{course.Title}}" >See More</a>
+            <button  *ngIf="this.role != 'teacher' && this.loggedIn != false && !isBought(course.ID) "  mat-stroked-button (click)="AddToCart(course)" >Add to Cart
+              <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+
+            <button  *ngIf="this.loggedIn != false && isBought(course.ID)" style="float: right;"  mat-raised-button color="primary" (click)="startCourse(course.ID)" >
+                Go to Course
+              <mat-icon>fiber_smart_record</mat-icon>
+            </button>
+
+          </div>
+        </div>
+      </div>
+      <pagination-controls (pageChange)="page = $event" ></pagination-controls>
+    </div>
+    <div>
+    </div>
+
+  </mat-tab>
+
+  <mat-tab label="Programming">
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">code</mat-icon>
+      Programming
+    </ng-template>
+    <div class="row">
+      <div class="col-sm-6" *ngFor="let course of programmingCourses">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="card-title">{{course.Title}}</h1>
+            <img class="card-img-top" src={{course.Image}} alt="ad-for-course">
+            <p class="card-text">{{course.Description}}</p>
+            <h3 class="card-text"><b>Price: </b> ${{course.Price}}</h3>
+            <p class="card-text"><small class="text-muted">Created At: {{course.CreatedAt.substring(0,10)}}</small></p>
+            <a (click)="seeMore(course.ID)" class="btn btn-primary" ping="{{course.Title}}" >See More</a>
+            <button  *ngIf="this.role != 'teacher' && this.loggedIn != false && !isBought(course.ID)" mat-stroked-button (click)="AddToCart(course)" >Add to Cart
+              <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+            <button  *ngIf="this.loggedIn != false && isBought(course.ID)" style="float: right;"  mat-raised-button color="primary" (click)="startCourse(course.ID)" >
+              Go to Course
+            <mat-icon>fiber_smart_record</mat-icon>
+          </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Web-Dev">
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">web</mat-icon>
+      Web-Dev
+    </ng-template>
+    <div class="row">
+      <div class="col-sm-6" *ngFor="let course of webDevCourses">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="card-title">{{course.Title}}</h1>
+            <img class="card-img-top" src={{course.Image}} alt="ad-for-course">
+            <p class="card-text">{{course.Description}}</p>
+            <h3 class="card-text"><b>Price: </b> ${{course.Price}}</h3>
+            <p class="card-text"><small class="text-muted">Created At: {{course.CreatedAt.substring(0,10)}}</small></p>
+            <a (click)="seeMore(course.ID)" class="btn btn-primary" ping="{{course.Title}}" >See More</a>
+            <button *ngIf="this.role != 'teacher' && this.loggedIn != false && !isBought(course.ID)" mat-stroked-button (click)="AddToCart(course)" >Add to Cart
+              <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+            <button  *ngIf="this.loggedIn != false && isBought(course.ID)" style="float: right;"  mat-raised-button color="primary" (click)="startCourse(course.ID)" >
+              Go to Course
+            <mat-icon>fiber_smart_record</mat-icon>
+          </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Web-Dev">
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">edit</mat-icon>
+      GraphicDesign
+    </ng-template>
+    <div class="row">
+      <div class="col-sm-6" *ngFor="let course of graphCourses">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="card-title">{{course.Title}}</h1>
+            <img class="card-img-top" src={{course.Image}} alt="ad-for-course">
+            <p class="card-text">{{course.Description}}</p>
+            <h3 class="card-text"><b>Price: </b> ${{course.Price}}</h3>
+            <p class="card-text">
+              <small style="float: le;"  class="text-muted">Created At: {{course.CreatedAt.substring(0,10)}}</small>
+            </p>
+            <a (click)="seeMore(course.ID)" class="btn btn-primary" ping="{{course.Title}}" >See More</a>
+            <button *ngIf="this.role != 'teacher' && this.loggedIn != false && !isBought(course.ID)" mat-stroked-button (click)="AddToCart(course)" >Add to Cart
+              <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+            <button  *ngIf="this.loggedIn != false && isBought(course.ID)" style="float: right;"  mat-raised-button color="primary" (click)="startCourse(course.ID)" >
+              Go to Course
+            <mat-icon>fiber_smart_record</mat-icon>
+          </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  
+</mat-tab-group>
+
+  
+
+  <div id="snackbar">Course added!</div>

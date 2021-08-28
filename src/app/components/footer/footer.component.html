@@ -1,0 +1,38 @@
+<section class="" >
+  <!-- Footer -->
+  <footer class="text-center text-white" style="background-color: #0a4275;">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: CTA - IF NO USER LOGGED IN -->
+      <section class="" *ngIf="(auth.authenticated | async) != true">
+        <p class="d-flex justify-content-center align-items-center">
+          <span class="me-3">Register for free</span>
+          <button  routerLink="/signup" type="button" class="btn btn-outline-light btn-rounded">
+            Sign up!
+          </button>
+        </p>
+      </section>
+      <!-- Section: CTA -->
+
+      <!-- Section: CTA - IF WE HAVE OUR USER LOGGED IN -->
+      <section class="" *ngIf="(auth.authenticated | async) == true">
+        <p class="d-flex justify-content-center align-items-center">
+          <span class="me-3">You can go to Your profile from here:</span>
+          <button  routerLink="/profile" type="button" class="btn btn-outline-light btn-rounded">
+            Profile
+          </button>
+        </p>
+      </section>
+      <!-- Section: CTA -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2021 Copyright:
+      <a class="text-white" href="">Udemy</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+</section>

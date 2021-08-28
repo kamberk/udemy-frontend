@@ -1,0 +1,166 @@
+<script>
+    // Prevent dropdown menu from closing when click inside the form
+    $(document).on("click", ".action-buttons .dropdown-menu", function(e){
+        e.stopPropagation();
+    });
+</script>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a 
+            routerLink="/home" 
+            class="navbar-brand">
+            Ude<b>my</b>
+        </a>  		
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Collection of nav links, forms, and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+            <div class="navbar-nav">
+
+                <a 
+                    routerLink="/home" 
+                    class="nav-item nav-link">
+                    Home
+                </a>
+
+                <a 
+                    routerLink="/about" 
+                    class="nav-item nav-link">
+                    About
+                </a>
+
+                <div class="nav-item dropdown">
+
+                    <a 
+                        href="#" 
+                        data-toggle="dropdown" 
+                        class="nav-item nav-link dropdown-toggle">
+                        Categories
+                    </a>
+
+                    <div class="dropdown-menu"
+                    id="last">					
+                        <a 
+                            routerLink="/web-design" 
+                            class="dropdown-item">
+                            Web-Development
+                        </a>
+
+                        <a 
+                            routerLink="/programming" 
+                            class="dropdown-item">
+                            Programming
+                        </a>
+
+                        <a 
+                            routerLink="/graphic-design" 
+                            class="dropdown-item">
+                            Graphic Design
+                        </a>
+                    </div>
+                </div>
+
+                <a 
+                id="last"
+                    routerLink="/contact" 
+                    class="nav-item nav-link">
+                    Contact
+                </a>
+
+                <a 
+                    routerLink="/search" 
+                    class="nav-item nav-link">
+                    Search
+                </a>
+
+            </div>
+            
+            <!-- <form class="navbar-form form-inline">
+                <div class="input-group search-box">								
+                    <input type="text" id="search" class="form-control" placeholder="Search here...">
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <i class="material-icons">&#xE8B6;</i>
+                        </span>
+                    </div>
+                </div>
+            </form> -->
+    
+            <div class="navbar-nav ml-auto action-buttons">
+            <a 
+                routerLink="/cart"
+                *ngIf="(AuthenticationService.authenticated |  async) == true && role != 'teacher'"
+                class="nav-link mr-4"
+                >
+                <button mat-button
+                matBadge={{cartItems.length}} matBadgePosition="after" matBadgeColor="primary" >
+                <mat-icon>shopping_cart</mat-icon>
+                </button>
+            </a>
+    
+            <a 
+                routerLink="/create-course"
+                *ngIf="user?.role != 'student' && (AuthenticationService.authenticated | async) == true"
+                class="nav-link mr-4"
+                >
+                Create Course
+            </a>
+    
+            <a 
+                routerLink="/my-courses"
+                *ngIf="(AuthenticationService.authenticated |  async) == true"
+                class="nav-link mr-4"
+                >
+                My Courses
+            </a>
+    
+            <a 
+                routerLink='/profile'
+                *ngIf="(AuthenticationService.authenticated |  async) == true"
+                class="nav-link mr-4"
+                >
+                Profile
+            </a>
+            
+            </div>
+    
+            <div 
+                *ngIf="(AuthenticationService.authenticated |  async) == false"
+                class="navbar-nav ml-auto action-buttons" >
+                <div class="nav-item dropdown">
+                    <a 
+                        routerLink='/login' 
+                        data-toggle="dropdown" 
+                        class="nav-link dropdown-toggle mr-4">
+                        Login
+                    </a>
+                </div>
+                <div class="nav-item dropdown">
+                    <a 
+                        routerLink="/signup" 
+                        data-toggle="dropdown" 
+                        class="btn btn-primary dropdown-toggle sign-up-btn">
+                        Sign up
+                    </a>
+                </div>
+            </div>
+
+            <div 
+                *ngIf="(AuthenticationService.authenticated |  async) == true"
+                class="navbar-nav ml-auto action-buttons" >
+                
+                <div class="nav-item dropdown">
+                    <a 
+                        data-toggle="dropdown" 
+                        class="btn btn-primary dropdown-toggle sign-up-btn"
+                        (click)="logout()"
+                        routerLink='/login'
+                        >
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>

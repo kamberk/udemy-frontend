@@ -1,0 +1,85 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div class="container">
+		<div class="main-body">
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="card">
+						<div class="card-body">
+							<div class="d-flex flex-column align-items-center text-center">
+								<img src='{{user?.image}}' alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+								<div class="mt-3">
+									<h4>{{user?.name}} {{user?.surname}}</h4>
+									<p class="text-secondary mb-1">{{user?.role}}</p>
+								</div>
+							</div>
+							<hr class="my-4">
+							
+						</div>
+					</div>
+				</div>
+
+                <!-- OVDE POCINJE FORMA   -->
+				<div class="col-lg-8">
+					<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+					<div class="card">
+						<div class="card-body">
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">First name</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input formControlName="name" type="text" class="form-control" value='{{user?.name}}'>
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Last Name</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input formControlName="surname" type="text" class="form-control" value='{{user?.surname}}'>
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-3">
+									<h6 class="mb-0">Image</h6>
+								</div>
+								<div class="col-sm-9 text-secondary">
+									<input formControlName="image" type="text" class="form-control" value='{{user?.image}}'>
+								</div>
+							</div>
+							<mat-error *ngIf="eror != undefined">
+								{{eror}}
+							</mat-error>
+							<div class="row">
+								<div class="col-sm-3"></div>
+								<div class="col-sm-9 text-secondary">
+									<input type="submit" value="submit" class="btn btn-primary px-4" value="Save Changes">
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				</div>
+                <!-- KRAJ FORME  -->
+				<div style="width: 50%; align-items: center; text-align: center; margin: auto; display: flex;" *ngIf="this.message != undefined" class="alert alert-primary" role="alert">
+					{{this.message}}
+				  </div>
+
+				  <div style="width: 50%; align-items: center; text-align: center; margin: auto;">
+					<hr noshade>
+					<button style="margin-right: 10px;" mat-fab color="primary" aria-label="Example icon button with a home icon" >
+					  <a style="text-decoration: none;" routerLink="/"><mat-icon style="color: white;">home</mat-icon></a>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>

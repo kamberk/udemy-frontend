@@ -1,0 +1,22 @@
+<body>
+<h1 class="remember">Please remember this code!</h1>
+<h2 class="remember">In case you forgot your password, use this code to reset it!</h2>
+<h3 class="remember">Write this code down on some paper or take a photo of it!</h3>
+<hr noshade>
+<h2 id="getIt">Your code is:</h2>
+<h1 id="code">{{code}}</h1>
+
+<h1 class="login">If you remembered it, you can go to Home page now or press Login icon to login:</h1>
+
+<div class="redirect">
+
+    <button style="margin-right: 10px;" mat-fab color="warn" aria-label="Example icon button with a home icon" >
+        <a routerLink="/"><mat-icon>home</mat-icon></a>
+      </button>
+
+    <button mat-fab color="primary" aria-label="Example icon button with a delete icon" >
+        <a routerLink="/login"><mat-icon>login</mat-icon></a>
+    </button>
+    
+  </div>
+</body>

@@ -1,0 +1,29 @@
+<body>  
+<h1 *ngIf="duzina == 0" style="text-align: center; display: flex; margin-top: 10%; justify-content: center; color: rgb(238, 66, 66);">Nothing to show yet...</h1>
+<input *ngIf="duzina != 0" style="width: 80%; margin: auto; justify-content: center; align-items: center; align-items: center; display: flex; height: 40px;" type="text" [(ngModel)]="term" class="searchTerm" placeholder="Search for courses...">
+<div class="row">
+    <div class="col-sm-6" *ngFor="let course of courses | filter:term">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">{{course.Title}}</h1>
+          <img class="card-img-top" src={{course.Image}} alt="ad-for-course">
+          <p class="card-text">{{course.Description}}</p>
+          <h3 class="card-text"><b>Price: </b> ${{course.Price}}</h3>
+          <p class="card-text"><small class="text-muted">Created At: {{course.CreatedAt}}</small></p>
+          <button mat-raised-button *ngIf="this.role != 'teacher'" style="display: flex; margin: auto;" (click)="startCourse(course.ID)" color="primary">Go to course
+            <mat-icon>fiber_smart_record</mat-icon>
+          </button>
+
+          <button mat-raised-button *ngIf="this.role != 'student'" style="display: flex; margin: auto; float: left;" (click)="Update(course.ID)" color="primary">Update
+            <mat-icon>update</mat-icon>
+          </button>
+
+          <button mat-raised-button *ngIf="this.role != 'student'" style="display: flex; margin: auto; float: right;" (click)="openDialog(course.ID)" color="warn">Delete
+            <mat-icon>delete</mat-icon>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

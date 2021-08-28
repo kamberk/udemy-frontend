@@ -1,0 +1,90 @@
+<h1>Update course</h1>
+
+<div class="container">
+
+  <form [formGroup]="createCourseForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-25">
+      <label for="title">New course Title</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="title" type="text" formControlName="title" placeholder="Course title..">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="description">New description</label>
+    </div>
+    <div class="col-75">
+      <textarea id="description" type="text" formControlName="description" placeholder="Write something about this course.." style="height:200px"></textarea>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label  for="price">New price $:</label>
+    </div>
+    <div class="col-75">
+      <input style="width: 100%; height: 100%;" id="price" type="number" formControlName="price" placeholder="Enter price">
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-25">
+      <label for="selectedFile">New course Image Link</label>
+    </div>
+    <div class="col-75">
+      <input id="selectedFile" type="text" formControlName="image" placeholder="URL to course image...">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="youtubeLink">New YouTube Link</label>
+    </div>
+    <div class="col-75">
+      <input id="youtubeLink" type="text" formControlName="link" placeholder="Enter YouTube Link to the course...">
+    </div>
+  </div>
+
+  <!-- <div class="row">
+    <div class="col-25">
+      <label for="youtubeLink">Category</label>
+    </div>
+    <div class="col-75">
+
+      <mat-form-field appearance="fill" style="width: 100%; height: 100%;">
+        <mat-label>Select category for course</mat-label>
+        <select matNativeControl required formControlName="category">
+          <option label="--select something --"></option>
+          <option value="programming">Programming</option>
+          <option value="web-dev">Web-Development</option>
+          <option value="graphic-design">Graphic Design</option>
+        </select>
+        <mat-error *ngIf="createCourseForm.hasError('required')">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+  </div> -->
+  
+  
+  <div class="row">
+    <input type="submit" value="Update">
+  </div>  
+
+  <div style="width: 50%; align-items: center; text-align: center; margin: auto; display: flex;" *ngIf="this.message != undefined" class="alert alert-primary" role="alert">
+    {{this.message}}
+    </div>
+
+    <ngb-alert *ngIf="this.eror != undefined" style="margin-top: 5px;" type="custom" [dismissible]="false"><strong>Whoops!</strong> {{eror}} <strong style="float: right;">Please fill all empty fields </strong> </ngb-alert>
+     
+
+  <ngx-spinner>
+    <p style="color: white" >Uploading Course...</p>
+  </ngx-spinner>
+
+  </form>
+</div>

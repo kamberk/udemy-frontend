@@ -1,0 +1,32 @@
+<div class="m-3">
+    <h3 style="width: 80%; margin: auto; justify-content: center; align-items: center; align-items: center; display: flex; height: 40px;">Search courses:</h3>
+    <div class="wrap">
+      <div class="search">
+        <input style="width: 80%; margin: auto; justify-content: center; align-items: center; align-items: center; display: flex; height: 40px;" type="text" [(ngModel)]="term" class="searchTerm" placeholder="What are you looking for?">
+      </div>
+      <div class="row">
+        <div class="col-sm-6" *ngFor="let course of courses| filter:term">
+          <div class="card">
+            <div class="card-body">
+              <h1 class="card-title">{{course.Title}}</h1>
+              <img class="card-img-top" src={{course.Image}} alt="ad-for-course">
+              <p class="card-text">{{course.Description}}</p>
+              <h3 class="card-text"><b>Price: </b> ${{course.Price}}</h3>
+              <p class="card-text">
+                <small style="float: le;"  class="text-muted">Created At: {{course.CreatedAt.substring(0,10)}}</small>
+              </p>
+              <a (click)="seeMore(course.ID)" class="btn btn-primary" ping="{{course.Title}}" >See More</a>
+              <button *ngIf="this.role != 'teacher' && this.loggedIn != false && !isBought(course.ID) " mat-stroked-button (click)="AddToCart(course)" >Add to Cart
+                <mat-icon>add_shopping_cart</mat-icon>
+              </button>
+              <button  *ngIf="this.loggedIn != false && isBought(course.ID)" style="float: right;"  mat-raised-button color="primary" (click)="startCourse(course.ID)" >
+                Go to Course
+              <mat-icon>fiber_smart_record</mat-icon>
+            </button>
+            </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="snackbar">Course added!</div>

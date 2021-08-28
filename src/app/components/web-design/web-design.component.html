@@ -1,0 +1,23 @@
+<div class="container">
+    <img class="baner" src="../../../assets/images/web.jpg" />
+</div>
+<div class="row">
+  <input style="width: 80%; margin: auto; justify-content: center; align-items: center; align-items: center; display: flex; height: 40px;" type="text" [(ngModel)]="term" class="searchTerm" placeholder="What are you looking for?">
+    <div class="col-sm-6" *ngFor="let course of courses | filter:term">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">{{course.Title}}</h1>
+          <img class="card-img-top" src={{course.Image}} alt="ad-for-course">
+          <p class="card-text">{{course.Description}}</p>
+          <h3 class="card-text"><b>Price: </b> ${{course.Price}}</h3>
+          <p class="card-text"><small class="text-muted">Created At: {{course.CreatedAt}}</small></p>
+          <a (click)="seeMore(course.ID)" class="btn btn-primary" ping="{{course.Title}}" >See More</a>
+          <button  *ngIf="(auth.authenticated | async) == true && role != 'teacher'" mat-stroked-button (click)="AddToCart(course)" >Add to Cart
+            <mat-icon>add_shopping_cart</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="snackbar">Course added!</div>
